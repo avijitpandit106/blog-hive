@@ -38,3 +38,4 @@ next-env.d.ts
 # ssh_keys
 ssh_key
 ssh_key.pub
+/src/generated/prisma

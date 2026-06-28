@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:17
+
+    container_name: bloghive-postgres
+
+    restart: unless-stopped
+
+    ports:
+      - "5433:5432"
+
+    environment:
+      POSTGRES_USER: bloghive
+      POSTGRES_PASSWORD: bloghive
+      POSTGRES_DB: bloghive
+
+    volumes:
+      - bloghive-postgres-data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bloghive"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  bloghive-postgres-data:
